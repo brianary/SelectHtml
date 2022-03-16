@@ -3,18 +3,18 @@
     "author": "Brian Lalonde",
     "classifications": [ "Console" ],
     "name": "PowerShell binary module",
-    "identity": "PSModuleTemplate.FSharp",
-    "groupIdentity":"PSModuleTemplate",
+    "identity": "SelectHtml.FSharp",
+    "groupIdentity":"SelectHtml",
     "shortName": "psmod",
     "tags": {
       "language": "F#",
       "type":"project"
     },
-    "sourceName": "PSModuleTemplate",
+    "sourceName": "SelectHtml",
     "preferNameDirectory": true,
-    "defaultName": "PSModuleTemplate",
+    "defaultName": "SelectHtml",
     "sources":[{"exclude": [
-        "PSModuleTemplate.csproj",
+        "SelectHtml.csproj",
         ".git/**/*",
         ".ionide/**/*",
         "**/[Bb]in/**",
@@ -40,3 +40,4 @@
       }
     }
   }
+
