@@ -23,12 +23,12 @@ Describe $module.Name {
 		} -Pending
 	}
 	Context 'Select-Html cmdlet' -Tag Cmdlet,Select-Html {
-		It "Given uri '<Uri>', '<Expected>' should be returned." -TestCases @(
-			@{ Uri = 'https://example.com/'; Expected = 'https://example.com/' }
-			@{ Uri = 'https://example.org/'; Expected = 'https://example.org/' }
+		It "Given XPath '<XPath>' and HTML '<Html>', '<Expected>' should be returned." -TestCases @(
+			@{ XPath = '//title'; Html = '<!DOCTYPE html><title>Test Title</title><p>'; Expected = 'Test Title' }
+			@{ XPath = '//title'; Html = '<!DOCTYPE html><title>Other Title</title><p>'; Expected = 'Other Title' }
 		) {
-			Param([uri]$Uri,$Expected)
-			Select-Html $Uri |Should -BeExactly $Expected
+			Param($XPath,$Html,$Expected)
+			Select-Html $XPath -Html $Html |Should -BeExactly $Expected
 		}
 	}
 }.GetNewClosure()

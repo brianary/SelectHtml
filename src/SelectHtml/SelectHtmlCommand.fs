@@ -6,34 +6,36 @@ open System.Management.Automation
 open HtmlAgilityPack
 
 /// Returns content from the HTML retrieved from a URL.
-[<Cmdlet(VerbsCommon.Select, "Html", DefaultParameterSetName="__AllParameterSets")>]
+[<Cmdlet(VerbsCommon.Select, "Html", DefaultParameterSetName="Html")>]
 [<OutputType(typeof<PSObject>)>]
 type SelectHtmlCommand () =
     inherit PSCmdlet ()
 
-    /// The URL to read the HTML from.
-    [<Parameter(Position=0,Mandatory=true)>]
-    [<ValidateNotNullOrEmpty>]
-    member val Uri : Uri = null with get, set
-
     /// The name of elements to return all occurrences of,
     /// or a dot followed by the class of elements to return all occurrences of,
     /// or a hash followed by the ID of elements to return all occurrences of.
-    [<Parameter(Position=1)>]
+    [<Parameter(Position=0,Mandatory=true)>]
     [<ValidateNotNullOrEmpty>]
-    member val Select : string = "table" with get, set
+    [<Alias("Select")>]
+    member val XPath : string = "//table" with get, set
 
-    /// Only elements whose inner text contain this value are included.
-    [<Parameter(ParameterSetName="Contains",Position=2,Mandatory=true)>]
+    /// The HTML to read from.
+    [<Parameter(ParameterSetName="Html",Mandatory=true,ValueFromPipeline=true)>]
     [<ValidateNotNullOrEmpty>]
-    member val Contains : string = "" with get, set
+    [<Alias("Content")>]
+    member val Html : string = "<!DOCTYPE html><title></title><p>" with get, set
 
-    /// The position of an individual element to select, or all matching elements by default.
-    [<Parameter(ParameterSetName="Index",Position=2,Mandatory=true)>]
-    member val Index : int = -1 with get, set
+    /// The URL to read the HTML from.
+    [<Parameter(ParameterSetName="Uri",Position=1,Mandatory=true,ValueFromPipelineByPropertyName=true)>]
+    [<ValidateNotNullOrEmpty>]
+    [<Alias("Url")>]
+    member val Uri : Uri = null with get, set
 
-    /// Indicates the attributes of the element should be returned rather than the content.
-    member val Attributes : SwitchParameter = (SwitchParameter false) with get, set
+    /// The URL to read the HTML from.
+    [<Parameter(ParameterSetName="Path",Mandatory=true,ValueFromPipelineByPropertyName=true)>]
+    [<ValidateNotNullOrEmpty>]
+    [<Alias("FullName")>]
+    member val Path : string = null with get, set
 
     // optional: setup before pipeline input starts (e.g. Name is set, InputObject is not)
     override x.BeginProcessing () =
@@ -45,5 +47,13 @@ type SelectHtmlCommand () =
 
     // optional: finish after all pipeline input
     override x.EndProcessing () =
-        x.WriteObject x.Uri
+        let htmldoc = new HtmlDocument()
+        match x.ParameterSetName with
+        | "Html" -> htmldoc.LoadHtml(x.Html)
+        | "Uri" -> htmldoc.Load(string x.Uri)
+        | "Path" -> htmldoc.Load(x.Path)
+        | name -> sprintf "Unknown parameter set %s" name |> failwith
+        htmldoc.DocumentNode.SelectNodes(x.XPath)
+            |> Seq.map (fun n -> n.InnerText)
+            |> x.WriteObject
         base.EndProcessing ()
