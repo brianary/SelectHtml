@@ -23,7 +23,7 @@ type SelectHtmlCommand () =
     [<Parameter(ParameterSetName="Html",Mandatory=true,ValueFromPipeline=true)>]
     [<ValidateNotNullOrEmpty>]
     [<Alias("Content")>]
-    member val Html : string = "<!DOCTYPE html><title></title><p>" with get, set
+    member val Html : string = null with get, set
 
     /// The URL to read the HTML from.
     [<Parameter(ParameterSetName="Uri",Position=1,Mandatory=true,ValueFromPipelineByPropertyName=true)>]
@@ -43,17 +43,31 @@ type SelectHtmlCommand () =
 
     // optional: handle each pipeline value (e.g. InputObject)
     override x.ProcessRecord () =
+        let doc = match x.ParameterSetName with
+                  | "Html" ->
+                      let h = HtmlDocument()
+                      h.LoadHtml(x.Html)
+                      h
+                  | "Uri" ->
+                      let w = HtmlWeb()
+                      w.Load(string x.Uri)
+                  | "Path" ->
+                      let h = HtmlDocument()
+                      h.Load(x.Path)
+                      x.WriteDebug(sprintf "Loaded HTML (length %d)" h.DocumentNode.OuterHtml.Length)
+                      h
+                  | name -> sprintf "Unknown parameter set %s" name |> failwith
+        x.WriteDebug(sprintf "Searching document for '%s'" x.XPath)
+        match doc.DocumentNode.SelectNodes(x.XPath) with
+        | null ->
+            x.WriteDebug(sprintf "XPath '%s': No matches found" x.XPath)
+        | matches ->
+            x.WriteDebug(sprintf "XPath '%s': %d matches found" x.XPath matches.Count)
+            matches
+                |> Seq.map (fun n -> n.InnerText)
+                |> x.WriteObject
         base.ProcessRecord ()
 
     // optional: finish after all pipeline input
     override x.EndProcessing () =
-        let htmldoc = new HtmlDocument()
-        match x.ParameterSetName with
-        | "Html" -> htmldoc.LoadHtml(x.Html)
-        | "Uri" -> htmldoc.Load(string x.Uri)
-        | "Path" -> htmldoc.Load(x.Path)
-        | name -> sprintf "Unknown parameter set %s" name |> failwith
-        htmldoc.DocumentNode.SelectNodes(x.XPath)
-            |> Seq.map (fun n -> n.InnerText)
-            |> x.WriteObject
         base.EndProcessing ()

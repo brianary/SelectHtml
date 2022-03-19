@@ -28,7 +28,21 @@ Describe $module.Name {
 			@{ XPath = '//title'; Html = '<!DOCTYPE html><title>Other Title</title><p>'; Expected = 'Other Title' }
 		) {
 			Param($XPath,$Html,$Expected)
-			Select-Html $XPath -Html $Html |Should -BeExactly $Expected
+			$Html |SelectHtml\Select-Html $XPath -vb |Should -BeExactly $Expected
+		}
+		It "Given XPath '<XPath>' and file '<Path>', '<Expected>' should be returned." -TestCases @(
+			@{ XPath = '//title'; Path = "$PSScriptRoot/test/csharp-history.html"; Expected = 'C# History' }
+			@{ XPath = '//table/thead'; Path = "$PSScriptRoot/test/csharp-history.html"; Expected = '*Feature*' }
+		) {
+			Param($XPath,$Path,$Expected)
+			SelectHtml\Select-Html $XPath -Path $Path -vb |Should -BeLike $Expected
+		}
+		It "Given XPath '<XPath>' and URL '<Url>', '<Expected>' should be returned." -TestCases @(
+			@{ XPath = '//section[@id="main_content"]/h1'; Url = 'http://webcoder.info/windowskey.html'; Expected = 'Windows Key Shortcuts for Windows 10' }
+			@{ XPath = '//section/p/a'; Url = 'http://webcoder.info/windowskey.html'; Expected = 'Windows Key' }
+		) {
+			Param($XPath,$Url,$Expected)
+			SelectHtml\Select-Html $XPath -Uri $Url -vb |Should -BeExactly $Expected
 		}
 	}
 }.GetNewClosure()
