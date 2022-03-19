@@ -32,4 +32,3 @@ Describe $module.Name {
 		}
 	}
 }.GetNewClosure()
-$env:Path = $envPath
