@@ -1,9 +1,8 @@
 namespace SelectHtml
-
 open System
 open System.Management.Automation
-
 open HtmlAgilityPack
+open Transforms
 
 /// Returns content from the HTML retrieved from a URL.
 [<Cmdlet(VerbsCommon.Select, "Html", DefaultParameterSetName="Html")>]
@@ -54,17 +53,16 @@ type SelectHtmlCommand () =
                   | "Path" ->
                       let h = HtmlDocument()
                       h.Load(x.Path)
-                      x.WriteDebug(sprintf "Loaded HTML (length %d)" h.DocumentNode.OuterHtml.Length)
                       h
                   | name -> sprintf "Unknown parameter set %s" name |> failwith
-        x.WriteDebug(sprintf "Searching document for '%s'" x.XPath)
+        x.WriteDebug(sprintf "Searching %s document for '%s'" doc.Encoding.WebName x.XPath)
         match doc.DocumentNode.SelectNodes(x.XPath) with
         | null ->
             x.WriteDebug(sprintf "XPath '%s': No matches found" x.XPath)
         | matches ->
             x.WriteDebug(sprintf "XPath '%s': %d matches found" x.XPath matches.Count)
             matches
-                |> Seq.map (fun n -> n.InnerText)
+                |> Seq.collect TransformNode
                 |> x.WriteObject
         base.ProcessRecord ()
 
