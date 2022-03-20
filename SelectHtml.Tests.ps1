@@ -46,6 +46,8 @@ Describe $module.Name {
 		}
 		It "Given XPath '<XPath>' and file '<Path>', row #<Row> property '<Property>' of the result should be '<Expected>'." -TestCases @(
 			@{ XPath = '//table'; Path = "$PSScriptRoot/test/csharp-history.html"; Row = 0; Property = 'Feature'; Expected = 'Anonymous methods' }
+			@{ XPath = '//table'; Path = "$PSScriptRoot/test/csharp-history.html"; Row = 4; Property = 'Version'; Expected = '7.0' }
+			@{ XPath = '//table'; Path = "$PSScriptRoot/test/csharp-history.html"; Row = 5; Property = 'Released'; Expected = '2010-04-12' }
 		) {
 			Param($XPath,$Path,$Row,$Property,$Expected)
 			[psobject[]] $table = SelectHtml\Select-Html $XPath -Path $Path -vb

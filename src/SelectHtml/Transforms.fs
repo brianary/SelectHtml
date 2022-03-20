@@ -20,7 +20,7 @@ let private Tr (n:HtmlNode) =
         |> Seq.map (fun n -> n.InnerText)
         |> Seq.toList
 
-let private OlOrUlOrMenu (n:HtmlNode) =
+let private HtmlList (n:HtmlNode) =
     n.Elements("li")
         |> Seq.map (fun n -> n.InnerText)
         |> Seq.toList
@@ -42,5 +42,5 @@ let private Table (n:HtmlNode) =
 let TransformNode (n:HtmlNode) =
     match n.Name with
     | "table" -> Table n
-    | "ol" | "ul" | "menu" -> OlOrUlOrMenu n |> List.map PSObject
+    | "ol" | "ul" | "menu" -> HtmlList n |> List.map PSObject
     | _ -> [PSObject n.InnerText]
