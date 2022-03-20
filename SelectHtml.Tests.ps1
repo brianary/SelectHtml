@@ -37,14 +37,20 @@ Describe $module.Name {
 			Param($XPath,$Path,$Expected)
 			SelectHtml\Select-Html $XPath -Path $Path -vb |Should -BeLike $Expected
 		}
-		It "Given XPath '<XPath>' and file '<Path>', row #<Row> property <Property> of the result should be '<Expected>'." -TestCases @(
-			@{ XPath = '//table'; Path = "$PSScriptRoot/test/csharp-history.html"; Row = 1; Property = 'Feature'; Expected = 'Anonymous methods' }
+		It "Given XPath '<XPath>' and file '<Path>', value #<Row> of the result should be '<Expected>'." -TestCases @(
+			@{ XPath = '//ul[contains(.,"QuickRef")]'; Path = "$PSScriptRoot/test/xslt2.html"; Row = 0; Expected = 'XSLT 2.0 QuickRef*' }
+		) {
+			Param($XPath,$Path,$Row,$Expected)
+			[string[]] $table = SelectHtml\Select-Html $XPath -Path $Path -vb
+			$table[$Row] |Should -BeLike $Expected
+		}
+		It "Given XPath '<XPath>' and file '<Path>', row #<Row> property '<Property>' of the result should be '<Expected>'." -TestCases @(
+			@{ XPath = '//table'; Path = "$PSScriptRoot/test/csharp-history.html"; Row = 0; Property = 'Feature'; Expected = 'Anonymous methods' }
 		) {
 			Param($XPath,$Path,$Row,$Property,$Expected)
-			$table = SelectHtml\Select-Html $XPath -Path $Path -vb
-			$table |ConvertTo-Json |Write-Host -fore Cyan
+			[psobject[]] $table = SelectHtml\Select-Html $XPath -Path $Path -vb
 			$table[$Row].$Property |Should -BeExactly $Expected
-		} -Skip
+		}
 		It "Given XPath '<XPath>' and URL '<Url>', '<Expected>' should be returned." -TestCases @(
 			@{ XPath = '//section[@id="main_content"]/h1'; Url = 'http://webcoder.info/windowskey.html'; Expected = 'Windows Key Shortcuts for Windows 10' }
 			@{ XPath = '//section/p/a'; Url = 'http://webcoder.info/windowskey.html'; Expected = 'Windows Key' }

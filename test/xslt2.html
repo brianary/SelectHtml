@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=7441e3ff7f9ee56455d7a8239be3803e3463708e">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>XSLT 2.0 QuickRef | Brianary</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="XSLT 2.0 QuickRef" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Stuff I code." />
+<meta property="og:description" content="Stuff I code." />
+<link rel="canonical" href="http://webcoder.info/xslt2.html" />
+<meta property="og:url" content="http://webcoder.info/xslt2.html" />
+<meta property="og:site_name" content="Brianary" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="XSLT 2.0 QuickRef" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Stuff I code.","headline":"XSLT 2.0 QuickRef","url":"http://webcoder.info/xslt2.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-61854432-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+
+          <h1 id="project_title">Brianary</h1>
+          <h2 id="project_tagline">Stuff I code.</h2>
+
+          
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/brianary/brianary.github.io/zipball/gh-pages">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/brianary/brianary.github.io/tarball/gh-pages">Download this project as a tar.gz file</a>
+            </section>
+          
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1 id="xslt-20-quickref">XSLT 2.0 QuickRef</h1>
+
+<ul>
+  <li><a href="#xslt-20-quickref">XSLT 2.0 QuickRef</a>
+    <ul>
+      <li><a href="#declarations">Declarations</a></li>
+      <li><a href="#instructions">Instructions</a></li>
+      <li><a href="#functions">Functions</a></li>
+      <li><a href="#namespaces">Namespaces</a></li>
+    </ul>
+  </li>
+  <li><a href="#xpath-20">XPath 2.0</a>
+    <ul>
+      <li><a href="#paths">Paths</a>
+        <ul>
+          <li><a href="#axes">Axes</a></li>
+          <li><a href="#node-tests">Node Tests</a></li>
+        </ul>
+      </li>
+      <li><a href="#accessors">Accessors</a></li>
+      <li><a href="#nodes">Nodes</a></li>
+      <li><a href="#sequences">Sequences</a></li>
+      <li><a href="#context">Context</a></li>
+      <li><a href="#numeric">Numeric</a></li>
+      <li><a href="#string">String</a></li>
+      <li><a href="#durationsbrdates--times">Durations,<br />Dates &amp; Times</a>
+        <ul>
+          <li><a href="#arithmetic-operators">Arithmetic Operators</a></li>
+          <li><a href="#comparison-operators">Comparison Operators</a></li>
+          <li><a href="#functions-1">Functions</a></li>
+        </ul>
+      </li>
+      <li><a href="#boolean">Boolean</a></li>
+      <li><a href="#anyuri">anyURI</a></li>
+      <li><a href="#qnames">QNames</a></li>
+      <li><a href="#other-eq-ne">Other eq ne</a></li>
+      <li><a href="#error--trace">Error &amp; Trace</a></li>
+      <li><a href="#type-expressions">Type Expressions</a></li>
+      <li><a href="#constructorsbrcasts">Constructors/Casts</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="declarations">Declarations</h2>
+
+<ul>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-attribute-set">xsl:attribute-set</a>
+    <ul>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-attribute">xsl:attribute</a>*</li>
+    </ul>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-character-map">xsl:character-map</a>
+    <ul>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-output-character">xsl:output-character</a>*</li>
+    </ul>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-decimal-format">xsl:decimal-format</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-function">xsl:function</a>
+    <ol>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-param">xsl:param</a>*</li>
+    </ol>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-import-schema">xsl:import-schema</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-include">xsl:include</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-key">xsl:key</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-namespace-alias">xsl:namespace-alias</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-output">xsl:output</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-param">xsl:param</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-preserve-space">xsl:preserve-space</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-strip-space">xsl:strip-space</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-stylesheet">xsl:stylesheet</a>
+    <ol>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-import">xsl:import</a>*</li>
+    </ol>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-template">xsl:template</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-transform">xsl:transform</a>
+    <ol>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-import">xsl:import</a>*</li>
+    </ol>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-variable">xsl:variable</a></li>
+</ul>
+
+<h2 id="instructions">Instructions</h2>
+
+<ul>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-analyze-string">xsl:analyze-string</a>
+    <ol>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-matching-substring">xsl:matching-substring</a>?</li>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-non-matching-substring">xsl:non-matching-substring</a>?</li>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-fallback">xsl:fallback</a>*</li>
+    </ol>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-apply-imports">xsl:apply-imports</a>
+    <ul>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-with-param">xsl:with-param</a>*</li>
+    </ul>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-apply-templates">xsl:apply-templates</a>
+    <ul>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-sort">xsl:sort</a>*</li>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-with-param">xsl:with-param</a>*</li>
+    </ul>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-attribute">xsl:attribute</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-call-template">xsl:call-template</a>
+    <ul>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-with-param">xsl:with-param</a>*</li>
+    </ul>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-choose">xsl:choose</a>
+    <ol>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-when">xsl:when</a>+</li>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-otherwise">xsl:otherwise</a>?</li>
+    </ol>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-comment">xsl:comment</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-copy">xsl:copy</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-copy-of">xsl:copy-of</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-document">xsl:document</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-element">xsl:element</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-fallback">xsl:fallback</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-for-each">xsl:for-each</a>
+    <ol>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-sort">xsl:sort</a>*</li>
+    </ol>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-for-each-group">xsl:for-each-group</a>
+    <ol>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-sort">xsl:sort</a>*</li>
+    </ol>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-if">xsl:if</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-message">xsl:message</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-namespace">xsl:namespace</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-next-match">xsl:next-match</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-number">xsl:number</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-perform-sort">xsl:perform-sort</a>
+    <ol>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-sort">xsl:sort</a>+</li>
+    </ol>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-processing-instruction">xsl:processing-instruction</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-result-document">xsl:result-document</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-sequence">xsl:sequence</a>
+    <ul>
+      <li><a href="https://www.w3.org/TR/xslt20/#element-fallback">xsl:fallback</a>*</li>
+    </ul>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-text">xsl:text</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#element-value-of">xsl:value-of</a></li>
+</ul>
+
+<h2 id="functions">Functions</h2>
+
+<ul>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-current">current</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-document">document</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-generate-id">generate-id</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-format-date">format-date</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-format-dateTime">format-dateTime</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-format-number">format-number</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-format-time">format-time</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-key">key</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-system-property">system-property</a>
+    <ul>
+      <li>xsl:is-schema-aware</li>
+      <li>xsl:product-name</li>
+      <li>xsl:product-version</li>
+      <li>xsl:supports-backwards- compatibility</li>
+      <li>xsl:supports-serialization</li>
+      <li>xsl:vendor</li>
+      <li>xsl:vendor-url</li>
+      <li>xsl:version</li>
+    </ul>
+  </li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-unparsed-entity-public-id">unparsed-entity-public-id</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-unparsed-entity-uri">unparsed-entity-uri</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-unparsed-text">unparsed-text</a></li>
+  <li><a href="https://www.w3.org/TR/xslt20/#function-unparsed-text-available">unparsed-text-available</a></li>
+</ul>
+
+<h2 id="namespaces">Namespaces</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/1999/XSL/Transform">xsl</a></li>
+  <li><a href="http://www.w3.org/2001/XMLSchema">xs</a></li>
+  <li><a href="http://www.w3.org/2006/xpath-functions">fn</a></li>
+  <li><a href="http://www.w3.org/2005/xqt-errors">err</a></li>
+</ul>
+
+<hr />
+
+<!-- markdownlint-disable single-title -->
+
+<h1 id="xpath-20"><a href="https://www.w3.org/TR/xpath20/">XPath 2.0</a></h1>
+
+<h2 id="paths"><a href="https://www.w3.org/TR/xpath20#id-path-expressions">Paths</a></h2>
+
+<h3 id="axes"><a href="https://www.w3.org/TR/xpath20#axes">Axes</a></h3>
+
+<p>▶️ forward, ◀️ backward</p>
+
+<ul>
+  <li>◀️ ancestor</li>
+  <li>◀️ ancestor-or-self</li>
+  <li>▶️ attribute @</li>
+  <li>▶️ child</li>
+  <li>▶️ descendant</li>
+  <li>▶️ descendant-or-self //</li>
+  <li>▶️ following</li>
+  <li>▶️ following-sibling</li>
+  <li>▶️ namespace</li>
+  <li>◀️ parent ..</li>
+  <li>◀️ preceding</li>
+  <li>◀️ preceding-sibling</li>
+  <li>▶️ self .</li>
+</ul>
+
+<h3 id="node-tests"><a href="https://www.w3.org/TR/xpath20#doc-xpath-KindTest">Node Tests</a></h3>
+
+<ul>
+  <li>*   <em>ns</em>:*   *:<em>name</em></li>
+  <li>attribute()</li>
+  <li>attribute(<em>name</em>)</li>
+  <li>attribute(<em>name</em>,<em>attribute-type</em>)</li>
+  <li>comment()</li>
+  <li>document-node()</li>
+  <li>document-node(element(<em>…</em>))</li>
+  <li>document-node( schema-element( <em>element-type</em> ) )</li>
+  <li>element()</li>
+  <li>element(<em>name</em>)</li>
+  <li>element(<em>name</em>,<em>element-type</em>)</li>
+  <li>processing-instruction()</li>
+  <li>processing-instruction(<em>name</em>)</li>
+  <li>node()</li>
+  <li>schema-element(<em>element-type</em>)</li>
+  <li>text()</li>
+</ul>
+
+<h2 id="accessors">Accessors</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-base-uri">base-uri</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-data">data</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-document-uri">document-uri</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-nilled">nilled</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-node-name">node-name</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-string">string</a></li>
+</ul>
+
+<h2 id="nodes">Nodes</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-is-same-node">is</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-lang">lang</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-local-name">local-name</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-name">name</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-namespace-uri">namespace-uri</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-node-after">&gt;&gt;</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-node-before">&lt;&lt;</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-number">number</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-root">root</a></li>
+</ul>
+
+<h2 id="sequences"><a href="https://www.w3.org/TR/xpath20#id-sequence-expressions">Sequences</a></h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-concatenate">,</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#id-filter-expr">[ <em>filter</em> ]</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-avg">avg</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-boolean">boolean</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-collection">collection</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-count">count</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-deep-equal">deep-equal</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-distinct-values">distinct-values</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-doc-available">doc-available</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-doc">doc</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-empty">empty</a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-quantified-expressions">every $<em>var</em> in <em>sequence</em> satisfies <em>expression</em></a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-quantified-expressions">every $<em>var1</em> in <em>sequence1</em>, $<em>var2</em> in <em>sequence2</em>, <em>…</em> satisfies <em>expression</em></a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-exactly-one">exactly-one</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-except">except</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-exists">exists</a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-for-expressions">for $<em>var</em> in <em>sequence</em> return <em>expression</em></a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-for-expressions">for $<em>var1</em> in <em>sequence1</em>, $<em>var2</em> in <em>sequence2</em>, <em>…</em> return <em>expression</em></a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-id">id</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-idref">idref</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-index-of">index-of</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-insert-before">insert-before</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-intersect">intersect</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-max">max</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-min">min</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-one-or-more">one-or-more</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-remove">remove</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-reverse">reverse</a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-quantified-expressions">some $<em>var</em> in <em>sequence</em> satisfies <em>expression</em></a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-quantified-expressions">some $<em>var1</em> in <em>sequence1</em>, $<em>var2</em> in <em>sequence2</em>, <em>…</em> satisfies <em>expression</em></a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subsequence">subsequence</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-sum">sum</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-to">to</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-union">union |</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-unordered">unordered</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-zero-or-one">zero-or-one</a></li>
+</ul>
+
+<h2 id="context">Context</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-position">position</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-last">last</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-current-dateTime">current-dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-current-date">current-date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-current-time">current-time</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-implicit-timezone">implicit-timezone</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-default-collation">default-collation</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-static-base-uri">static-base-uri</a></li>
+</ul>
+
+<h2 id="numeric"><a href="https://www.w3.org/TR/xpath20#id-arithmetic">Numeric</a></h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-add">+</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-subtract">-</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-multiply">*</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-divide">div</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-integer-divide">idiv</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-mod">mod</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-unary-plus">+<em>n</em></a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-unary-minus">-<em>n</em></a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-equal">eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-less-than">lt le</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-numeric-greater-than">gt ge</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-abs">abs</a></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-ceiling">ceiling</a></em></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-floor">floor</a></em></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-round">round</a></em></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-round-half-to-even">round-half-to-even</a></li>
+</ul>
+
+<h2 id="string">String</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-codepoint-equal">codepoint-equal</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-codepoints-to-string">codepoints-to-string</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-compare">compare</a></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-concat">concat</a></em></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-contains">contains</a></em></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-encode-for-url">encode-for-url</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-ends-with">ends-with</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-escape-html-uri">escape-html-uri</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-iri-to-uri">iri-to-uri</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-lower-case">lower-case</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-matches">matches</a></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-normalize-space">normalize-space</a></em></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-normalize-unicode">normalize-unicode</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-replace">replace</a></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-starts-with">starts-with</a></em></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-string-join">string-join</a></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-string-length">string-length</a></em></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-string-to-codepoints">string-to-codepoints</a></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-substring-after">substring-after</a></em></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-substring-before">substring-before</a></em></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-substring">substring</a></em></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-tokenize">tokenize</a></li>
+  <li><em><a href="http://www.w3.org/TR/xpath-functions/#func-translate">translate</a></em></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-upper-case">upper-case</a></li>
+</ul>
+
+<h2 id="durationsdates--times">Durations,<br />Dates &amp; Times</h2>
+
+<h3 id="arithmetic-operators"><a href="https://www.w3.org/TR/xpath20#id-arithmetic">Arithmetic Operators</a></h3>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#dt-dayTimeDuration">xs:dayTimeDuration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#dt-yearMonthDuration">xs:yearMonthDuration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-add-dayTimeDurations">dayTimeDuration + dayTimeDuration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-add-dayTimeDuration-to-date">dayTimeDuration + date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-add-dayTimeDuration-to-dateTime">dayTimeDuration + dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-add-dayTimeDuration-to-time">dayTimeDuration + time</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-add-yearMonthDurations">yearMonthDuration + yearMonthDuration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-add-yearMonthDuration-to-date">yearMonthDuration + date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-add-yearMonthDuration-to-dateTime">yearMonthDuration + dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-dates">date - date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-dateTimes">dateTime - dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-dayTimeDuration-from-date">dayTimeDuration - date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-dayTimeDuration-from-dateTime">dayTimeDuration - dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-dayTimeDuration-from-time">dayTimeDuration - time</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-dayTimeDurations">dayTimeDuration - dayTimeDuration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-times">time - time</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-yearMonthDuration-from-date">yearMonthDuration - date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-yearMonthDuration-from-dateTime">yearMonthDuration - dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-subtract-yearMonthDurations">yearMonthDuration - yearMonthDuration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-multiply-dayTimeDuration">dayTimeDuration * double</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-multiply-yearMonthDuration">yearMonthDuration * double</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-divide-dayTimeDuration-by-dayTimeDuration">dayTimeDuration div dayTimeDuration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-divide-dayTimeDuration">dayTimeDuration div double</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-divide-yearMonthDuration-by-yearMonthDuration">yearMonthDuration div yearMonthDuration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-divide-yearMonthDuration">yearMonthDuration div double</a></li>
+</ul>
+
+<h3 id="comparison-operators"><a href="https://www.w3.org/TR/xpath20#id-comparisons">Comparison Operators</a></h3>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-date-equal">date: eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-date-greater-than">date: gt ge</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-date-less-than">date: lt le</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-dateTime-equal">dateTime: eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-dateTime-greater-than">dateTime: gt ge</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-dateTime-less-than">dateTime: lt le</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-dayTimeDuration-greater-than">dayTimeDuration: gt ge</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-dayTimeDuration-less-than">dayTimeDuration: lt le</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-duration-equal">duration: eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-gDay-equal">gDay: eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-gMonthDay-equal">gMonthDay: eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-gMonth-equal">gMonth: eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-gYear-equal">gYear: eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-gYearMonth-equal">gYearMonth: eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-time-equal">time: eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-time-greater-than">time: gt ge</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-time-less-than">time: lt le</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-yearMonthDuration-greater-than">yearMonthDuration: gt ge</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-yearMonthDuration-less-than">yearMonthDuration: lt le</a></li>
+</ul>
+
+<h3 id="functions-1">Functions</h3>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-adjust-dateTime-to-timezone">adjust-dateTime-to-timezone</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-adjust-date-to-timezone">adjust-date-to-timezone</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-adjust-time-to-timezone">adjust-time-to-timezone</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-day-from-date">day-from-date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-day-from-dateTime">day-from-dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-days-from-duration">days-from-duration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-hours-from-dateTime">hours-from-dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-hours-from-duration">hours-from-duration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-hours-from-time">hours-from-time</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-minutes-from-dateTime">minutes-from-dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-minutes-from-duration">minutes-from-duration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-minutes-from-time">minutes-from-time</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-month-from-date">month-from-date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-month-from-dateTime">month-from-dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-months-from-duration">months-from-duration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-seconds-from-dateTime">seconds-from-dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-seconds-from-duration">seconds-from-duration</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-seconds-from-time">seconds-from-time</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-timezone-from-dateTime">timezone-from-dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-timezone-from-date">timezone-from-date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-timezone-from-time">timezone-from-time</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-year-from-dateTime">year-from-dateTime</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-year-from-date">year-from-date</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-years-from-duration">years-from-duration</a></li>
+</ul>
+
+<h2 id="boolean"><a href="https://www.w3.org/TR/xpath20/#id-logical-expressions">Boolean</a></h2>
+
+<ul>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-logical-expressions">and</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-boolean-equal">eq</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-boolean-greater-than">gt ge</a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-conditionals">if ( <em>expression</em> ) then <em>expression</em> else _expression__</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-boolean-less-than">lt le</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-false">false</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-not">not</a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-logical-expressions">or</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-true">true</a></li>
+</ul>
+
+<h2 id="anyuri">anyURI</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-resolve-uri">resolve-uri</a></li>
+</ul>
+
+<h2 id="qnames">QNames</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-QName-equal">eq ne</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-in-scope-prefixes">in-scope-prefixes</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-local-name-from-QName">local-name-from-QName</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-namespace-uri-for-prefix">namespace-uri-for-prefix</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-namespace-uri-from-QName">namespace-uri-from-QName</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-prefix-from-QName">prefix-from-QName</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-QName">QName</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-resolve-QName">resolve-QName</a></li>
+</ul>
+
+<h2 id="other-eq-ne">Other eq ne</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-base64Binary-equal">base64Binary</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-hexBinary-equal">hexBinary</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-NOTATION-equal">NOTATION</a></li>
+</ul>
+
+<h2 id="error--trace">Error &amp; Trace</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-error">error</a></li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-trace">trace</a></li>
+</ul>
+
+<h2 id="type-expressions"><a href="https://www.w3.org/TR/xpath20/#id-expressions-on-datatypes">Type Expressions</a></h2>
+
+<ul>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-cast">cast as</a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-castable">castable as</a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-constructor-functions"><em>constructor</em>(<em>expression</em>)</a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-instance-of">instance of</a></li>
+  <li><a href="https://www.w3.org/TR/xpath20/#id-treat">treat as</a></li>
+</ul>
+
+<h2 id="constructorscasts"><a href="http://www.w3.org/TR/xpath-functions/#constructor-functions">Constructors</a>/<br /><a href="http://www.w3.org/TR/xpath-functions/#casting">Casts</a></h2>
+
+<ul>
+  <li>xs:anyURI</li>
+  <li>xs:base64Binary</li>
+  <li>xs:boolean</li>
+  <li>xs:byte</li>
+  <li>xs:date</li>
+  <li>xs:dateTime</li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#func-dateTime">dateTime</a></li>
+  <li>xs:dayTimeDuration</li>
+  <li>xs:decimal #</li>
+  <li>xs:double #</li>
+  <li>xs:duration</li>
+  <li>xs:ENTITY</li>
+  <li>xs:float #</li>
+  <li>xs:gDay</li>
+  <li>xs:gMonthDay</li>
+  <li>xs:gMonth</li>
+  <li>xs:gYear</li>
+  <li>xs:gYearMonth</li>
+  <li>xs:hexBinary</li>
+  <li>xs:ID</li>
+  <li>xs:IDREF</li>
+  <li>xs:integer #</li>
+  <li>xs:int</li>
+  <li>xs:language</li>
+  <li>xs:long</li>
+  <li>xs:Name</li>
+  <li>xs:NCName</li>
+  <li>xs:negativeInteger</li>
+  <li>xs:NMTOKEN</li>
+  <li>xs:nonNegativeInteger</li>
+  <li>xs:nonPositiveInteger</li>
+  <li>xs:normalizedString</li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#constructor-qname-notation"><del>xs:NOTATION</del></a></li>
+  <li>xs:positiveInteger</li>
+  <li><a href="http://www.w3.org/TR/xpath-functions/#constructor-qname-notation">xs:QName</a></li>
+  <li>xs:short</li>
+  <li>xs:string</li>
+  <li>xs:time</li>
+  <li>xs:token</li>
+  <li>xs:unsignedByte</li>
+  <li>xs:unsignedInt</li>
+  <li>xs:unsignedLong</li>
+  <li>xs:unsignedShort</li>
+  <li>xs:untypedAtomic</li>
+  <li>xs:yearMonthDuration</li>
+</ul>
+
+<p><a href="https://www.w3.org/TR/xmlschema-2/#built-in-datatypes">XSchema built-in datatypes</a></p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>

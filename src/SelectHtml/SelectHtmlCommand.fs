@@ -52,7 +52,7 @@ type SelectHtmlCommand () =
                       w.Load(string x.Uri)
                   | "Path" ->
                       let h = HtmlDocument()
-                      h.Load(x.Path)
+                      h.Load(x.Path, true)
                       h
                   | name -> sprintf "Unknown parameter set %s" name |> failwith
         x.WriteDebug(sprintf "Searching %s document for '%s'" doc.Encoding.WebName x.XPath)
