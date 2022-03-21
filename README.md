@@ -7,7 +7,7 @@ SelectHtml
 <!-- Optional badges: -->
 [![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/SelectHtml)](https://www.powershellgallery.com/packages/SelectHtml/)
 [![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/SelectHtml)](https://www.powershellgallery.com/packages/SelectHtml/)
-[![Actions Status](https://github.com/AuthorName/SelectHtml/workflows/.NET%20Core/badge.svg)](https://github.com/AuthorName/SelectHtml/actions)
+[![Actions Status](https://github.com/brianary/SelectHtml/workflows/.NET%20Core/badge.svg)](https://github.com/brianary/SelectHtml/actions)
 
 A PowerShell module for selecting data from HTML
 
