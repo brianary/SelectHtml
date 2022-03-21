@@ -7,8 +7,8 @@ CompatiblePSEditions = @('Core','Desktop')
 GUID = '28f9b47e-c048-4923-9361-9a0ea6bab4c7'
 Author = 'Brian Lalonde'
 # CompanyName = 'Unknown'
-Copyright = '(c) Brian Lalonde. All rights reserved.'
-Description = 'Returns content from the HTML retrieved from a URL..'
+Copyright = 'Copyright © 2022 Brian Lalonde. All rights reserved.'
+Description = 'Extracts content from an HTML document using an XPath expression.'
 PowerShellVersion = '5.1'
 FunctionsToExport = @()
 CmdletsToExport = @('Select-Html')
@@ -18,9 +18,9 @@ FileList = @('SelectHtml.dll','SelectHtml.dll-Help.xml')
 PrivateData = @{
     PSData = @{
         Tags = @('scrape','html','agility')
-        # LicenseUri = ''
-        # ProjectUri = ''
-        # IconUri = ''
+        LicenseUri = 'https://github.com/brianary/SelectHtml/blob/master/LICENSE'
+        ProjectUri = 'https://github.com/brianary/SelectHtml/'
+        IconUri = 'http://webcoder.info/images/SelectHtml.svg'
         # ReleaseNotes = ''
     }
 }

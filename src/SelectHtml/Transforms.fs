@@ -17,12 +17,12 @@ let private ToPSCustomObject (properties:string list) (values:string list) =
 
 let private Tr (n:HtmlNode) =
     n.SelectNodes("th|td")
-        |> Seq.map (fun n -> n.InnerText)
+        |> Seq.map (fun n -> n.InnerText.Trim())
         |> Seq.toList
 
 let private HtmlList (n:HtmlNode) =
     n.Elements("li")
-        |> Seq.map (fun n -> n.InnerText)
+        |> Seq.map (fun n -> n.InnerText.Trim())
         |> Seq.toList
 
 let private Table (n:HtmlNode) =
@@ -39,8 +39,9 @@ let private Table (n:HtmlNode) =
         |> Seq.map (ToPSCustomObject properties)
         |> Seq.toList
 
+/// Converts an HTML node into a list of PSObjects.
 let TransformNode (n:HtmlNode) =
     match n.Name with
     | "table" -> Table n
     | "ol" | "ul" | "menu" -> HtmlList n |> List.map PSObject
-    | _ -> [PSObject n.InnerText]
+    | _ -> [PSObject <| n.InnerText.Trim()]

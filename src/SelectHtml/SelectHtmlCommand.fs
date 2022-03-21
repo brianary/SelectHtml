@@ -10,9 +10,7 @@ open Transforms
 type SelectHtmlCommand () =
     inherit PSCmdlet ()
 
-    /// The name of elements to return all occurrences of,
-    /// or a dot followed by the class of elements to return all occurrences of,
-    /// or a hash followed by the ID of elements to return all occurrences of.
+    /// XPath that specifies the HTML elements to extract.
     [<Parameter(Position=0,Mandatory=true)>]
     [<ValidateNotNullOrEmpty>]
     [<Alias("Select")>]
@@ -30,7 +28,7 @@ type SelectHtmlCommand () =
     [<Alias("Url")>]
     member val Uri : Uri = null with get, set
 
-    /// The URL to read the HTML from.
+    /// The file to read the HTML from.
     [<Parameter(ParameterSetName="Path",Mandatory=true,ValueFromPipelineByPropertyName=true)>]
     [<ValidateNotNullOrEmpty>]
     [<Alias("FullName")>]
@@ -61,9 +59,10 @@ type SelectHtmlCommand () =
             x.WriteDebug(sprintf "XPath '%s': No matches found" x.XPath)
         | matches ->
             x.WriteDebug(sprintf "XPath '%s': %d matches found" x.XPath matches.Count)
+            matches |> Seq.iter (fun n -> sprintf "Found %s" n.XPath |> x.WriteDebug)
             matches
                 |> Seq.collect TransformNode
-                |> x.WriteObject
+                |> Seq.iter x.WriteObject
         base.ProcessRecord ()
 
     // optional: finish after all pipeline input
