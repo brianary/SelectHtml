@@ -9,11 +9,11 @@ SelectHtml
 [![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/SelectHtml)](https://www.powershellgallery.com/packages/SelectHtml/)
 [![Actions Status](https://github.com/brianary/SelectHtml/workflows/.NET%20Core/badge.svg)](https://github.com/brianary/SelectHtml/actions)
 
-A PowerShell module for selecting data from HTML
+A PowerShell module for selecting data from HTML using the [HTML Agility Pack](https://html-agility-pack.net/).
 
 To install: `Install-Module SelectHtml`
 
-<!-- Consider using LICEcap (cinst licecap) to capture a GIF animation of a small PowerShell window showing your module in use. -->
+![example usage of SelectHtml](SelectHtml.gif)
 
 Cmdlets
 -------
