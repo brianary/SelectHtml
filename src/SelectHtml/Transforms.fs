@@ -42,6 +42,7 @@ let private Table (n:HtmlNode) =
 /// Converts an HTML node into a list of PSObjects.
 let TransformNode (n:HtmlNode) =
     match n.Name with
+    | "table" when n.ChildNodes.Count = 1 && n.ChildNodes[0].Name = "tbody" -> Table n.FirstChild
     | "table" -> Table n
     | "ol" | "ul" | "menu" -> HtmlList n |> List.map PSObject
     | _ -> [PSObject <| n.InnerText.Trim()]

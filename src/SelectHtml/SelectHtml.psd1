@@ -2,7 +2,7 @@
 # and https://docs.microsoft.com/powershell/module/microsoft.powershell.core/new-modulemanifest
 @{
 RootModule = 'SelectHtml.dll'
-ModuleVersion = '1.0.0'
+ModuleVersion = '1.0.1'
 CompatiblePSEditions = @('Core','Desktop')
 GUID = '28f9b47e-c048-4923-9361-9a0ea6bab4c7'
 Author = 'Brian Lalonde'
@@ -21,7 +21,7 @@ PrivateData = @{
         LicenseUri = 'https://github.com/brianary/SelectHtml/blob/master/LICENSE'
         ProjectUri = 'https://github.com/brianary/SelectHtml/'
         IconUri = 'http://webcoder.info/images/SelectHtml.svg'
-        # ReleaseNotes = ''
+        ReleaseNotes = '1.0.1 fix simple table tbody parsing'
     }
 }
 }

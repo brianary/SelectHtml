@@ -30,6 +30,16 @@ Describe $module.Name {
 			Param($XPath,$Html,$Expected)
 			$Html |SelectHtml\Select-Html $XPath -vb |Should -BeExactly $Expected
 		}
+		It "Given XPath '<XPath>' and HTML '<Html>', object '<Expected>' should be returned." -TestCases @(
+			@{ XPath = '/table'; Html = '<table><tbody><tr><th><p><strong>Count</strong></p></th><th><p><strong>Name</strong></p></th>
+				<th><p><strong>Audience</strong></p></th></tr><tr><td><p>9</p></td><td><p>Accounts</p></td><td><p>Members</p></td></tr>
+				</tbody></table>'; Expected = [pscustomobject]@{Count=9;Name='Accounts';Audience='Members'} }
+		) {
+			Param($XPath,$Html,$Expected)
+			$selected = $Html |SelectHtml\Select-Html $XPath -vb
+			$props = $selected.PSObject.Properties.Name
+			$props |ForEach-Object {$selected.$_ |Should -BeExactly $Expected.$_}
+		}
 		It "Given XPath '<XPath>' and file '<Path>', '<Expected>' should be returned." -TestCases @(
 			@{ XPath = '//title'; Path = "$PSScriptRoot/test/csharp-history.html"; Expected = 'C# History' }
 			@{ XPath = '//table/thead'; Path = "$PSScriptRoot/test/csharp-history.html"; Expected = '*Feature*' }
