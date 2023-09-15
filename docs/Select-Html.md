@@ -52,7 +52,7 @@ All Systems Operational
 
 ### Example 3
 ```powershell
-PS C:\> Select-Html //table https://www.irs.gov/e-file-providers/foreign-country-code-listing-for-modernized-e-file
+PS C:\> Select-Html //table https://www.irs.gov/countrycodes
 ```
 
 ```txt
