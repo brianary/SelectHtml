@@ -68,7 +68,7 @@ Describe $module.Name {
 			@{ XPath = '//section/p/a'; Url = 'http://webcoder.info/windowskey.html'; Like = 'Windows Key' }
 		) {
 			Param($XPath,$Url,$Like)
-			SelectHtml\Select-Html $XPath -Uri $Url -vb |Should -BeLike $Expected
+			SelectHtml\Select-Html $XPath -Uri $Url -vb |Should -BeLike $Like
 		}
 	}
 }.GetNewClosure()
