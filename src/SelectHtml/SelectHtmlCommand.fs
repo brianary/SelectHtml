@@ -34,11 +34,11 @@ type SelectHtmlCommand () =
     [<Alias("FullName")>]
     member val Path : string = null with get, set
 
-    // optional: setup before pipeline input starts (e.g. Name is set, InputObject is not)
+    // Setup before pipeline input starts (e.g. Name is set, InputObject is not)
     override x.BeginProcessing () =
         base.BeginProcessing ()
 
-    // optional: handle each pipeline value (e.g. InputObject)
+    // Handle each pipeline value (e.g. InputObject)
     override x.ProcessRecord () =
         let doc = match x.ParameterSetName with
                   | "Html" ->
@@ -65,6 +65,6 @@ type SelectHtmlCommand () =
                 |> Seq.iter x.WriteObject
         base.ProcessRecord ()
 
-    // optional: finish after all pipeline input
+    // Finish after all pipeline input
     override x.EndProcessing () =
         base.EndProcessing ()
