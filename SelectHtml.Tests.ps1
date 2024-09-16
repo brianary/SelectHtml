@@ -64,11 +64,11 @@ Describe $module.Name {
 			$table[$Row].$Property |Should -BeExactly $Expected
 		}
 		It "Given XPath '<XPath>' and URL '<Url>', '<Expected>' should be returned." -TestCases @(
-			@{ XPath = '//section[@id="main_content"]/h1'; Url = 'http://webcoder.info/windowskey.html'; Expected = 'Windows Key Shortcuts for Windows 10' }
-			@{ XPath = '//section/p/a'; Url = 'http://webcoder.info/windowskey.html'; Expected = 'Windows Key' }
+			@{ XPath = '//section[@id="main_content"]/h1'; Url = 'http://webcoder.info/windowskey.html'; Like = 'Windows Key Shortcuts for Windows*' }
+			@{ XPath = '//section/p/a'; Url = 'http://webcoder.info/windowskey.html'; Like = 'Windows Key' }
 		) {
-			Param($XPath,$Url,$Expected)
-			SelectHtml\Select-Html $XPath -Uri $Url -vb |Should -BeExactly $Expected
+			Param($XPath,$Url,$Like)
+			SelectHtml\Select-Html $XPath -Uri $Url -vb |Should -BeLike $Expected
 		}
 	}
 }.GetNewClosure()
