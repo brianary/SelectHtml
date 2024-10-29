@@ -2,7 +2,7 @@
 # and https://docs.microsoft.com/powershell/module/microsoft.powershell.core/new-modulemanifest
 @{
 RootModule = 'SelectHtml.dll'
-ModuleVersion = '1.0.5'
+ModuleVersion = '1.0.6'
 CompatiblePSEditions = @('Core','Desktop')
 GUID = '28f9b47e-c048-4923-9361-9a0ea6bab4c7'
 Author = 'Brian Lalonde'
