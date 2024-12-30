@@ -1,11 +1,21 @@
 Changes
 =======
 
-1.0.8
+1.0.10
+------
+
+- retry deployment
+
+1.0.9
 -----
 
 - update HtmlAgilityPack dependency
 - catch up changelog
+
+1.0.8
+-----
+
+- update HtmlAgilityPack dependency
 
 1.0.7
 -----
