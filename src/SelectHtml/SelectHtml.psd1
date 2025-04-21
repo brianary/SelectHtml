@@ -2,12 +2,12 @@
 # and https://docs.microsoft.com/powershell/module/microsoft.powershell.core/new-modulemanifest
 @{
 RootModule = 'SelectHtml.dll'
-ModuleVersion = '1.0.11' # update to force publish
+ModuleVersion = '1.0.12'
 CompatiblePSEditions = @('Core','Desktop')
 GUID = '28f9b47e-c048-4923-9361-9a0ea6bab4c7'
 Author = 'Brian Lalonde'
 # CompanyName = 'Unknown'
-Copyright = 'Copyright © 2022 Brian Lalonde. All rights reserved.'
+Copyright = 'Copyright © 2025 Brian Lalonde. All rights reserved.'
 Description = 'Extracts content from an HTML document using an XPath expression.'
 PowerShellVersion = '5.1'
 FunctionsToExport = @()
@@ -21,7 +21,7 @@ PrivateData = @{
         LicenseUri = 'https://github.com/brianary/SelectHtml/blob/master/LICENSE'
         ProjectUri = 'https://github.com/brianary/SelectHtml/'
         IconUri = 'http://webcoder.info/images/SelectHtml.svg'
-        ReleaseNotes = '1.0.2 update HtmlAgilityPack dependency; updated example with simpler URL alias'
+        ReleaseNotes = 'update HtmlAgilityPack dependency'
     }
 }
 }
