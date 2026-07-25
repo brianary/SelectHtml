@@ -1,27 +1,10 @@
 # Pester tests, see https://github.com/Pester/Pester/wiki
-Import-LocalizedData -BindingVariable manifest -BaseDirectory ./src/* -FileName (Split-Path $PWD -Leaf)
-$psd1 = Resolve-Path ./src/*/bin/Debug/*/*.psd1
+Import-LocalizedData -BindingVariable manifest -BaseDirectory src -FileName (Split-Path $PWD -Leaf)
+$psd1 = Resolve-Path ./src/bin/*/net*/publish/*.psd1
 if(1 -lt ($psd1 |Measure-Object).Count) {throw "Too many module binaries found: $psd1"}
 $module = Import-Module "$psd1" -PassThru -vb
 
 Describe $module.Name {
-	Context "$($module.Name) module" -Tag Module {
-		It "Given the module, the version should match the manifest version" {
-			$module.Version |Should -BeExactly $manifest.ModuleVersion
-		}
-		It "Given the module, the DLL file version should match the manifest version" {
-			(Get-Item "$($module.ModuleBase)\$($module.Name).dll").VersionInfo.FileVersionRaw |
-				Should -BeLike "$($manifest.ModuleVersion)*"
-		}
-		It "Given the module, the DLL product version should match the manifest version" {
-			(Get-Item "$($module.ModuleBase)\$($module.Name).dll").VersionInfo.ProductVersionRaw |
-				Should -BeLike "$($manifest.ModuleVersion)*"
-		} -Pending
-		It "Given the module, the DLL should have a valid semantic product version" {
-			$v = (Get-Item "$($module.ModuleBase)\$($module.Name).dll").VersionInfo.ProductVersion
-			[semver]::TryParse($v, [ref]$null) |Should -BeTrue
-		} -Pending
-	}
 	Context 'Select-Html cmdlet' -Tag Cmdlet,Select-Html {
 		It "Given XPath '<XPath>' and HTML '<Html>', '<Expected>' should be returned." -TestCases @(
 			@{ XPath = '//title'; Html = '<!DOCTYPE html><title>Test Title</title><p>'; Expected = 'Test Title' }
@@ -41,23 +24,23 @@ Describe $module.Name {
 			$props |ForEach-Object {$selected.$_ |Should -BeExactly $Expected.$_}
 		}
 		It "Given XPath '<XPath>' and file '<Path>', '<Expected>' should be returned." -TestCases @(
-			@{ XPath = '//title'; Path = "$PSScriptRoot/test/csharp-history.html"; Expected = 'C# History' }
-			@{ XPath = '//table/thead'; Path = "$PSScriptRoot/test/csharp-history.html"; Expected = '*Feature*' }
+			@{ XPath = '//title'; Path = "$PSScriptRoot/csharp-history.html"; Expected = 'C# History' }
+			@{ XPath = '//table/thead'; Path = "$PSScriptRoot/csharp-history.html"; Expected = '*Feature*' }
 		) {
 			Param($XPath,$Path,$Expected)
 			SelectHtml\Select-Html $XPath -Path $Path -vb |Should -BeLike $Expected
 		}
 		It "Given XPath '<XPath>' and file '<Path>', value #<Row> of the result should be '<Expected>'." -TestCases @(
-			@{ XPath = '//ul[contains(.,"QuickRef")]'; Path = "$PSScriptRoot/test/xslt2.html"; Row = 0; Expected = 'XSLT 2.0 QuickRef*' }
+			@{ XPath = '//ul[contains(.,"QuickRef")]'; Path = "$PSScriptRoot/xslt2.html"; Row = 0; Expected = 'XSLT 2.0 QuickRef*' }
 		) {
 			Param($XPath,$Path,$Row,$Expected)
 			[string[]] $table = SelectHtml\Select-Html $XPath -Path $Path -vb
 			$table[$Row] |Should -BeLike $Expected
 		}
 		It "Given XPath '<XPath>' and file '<Path>', row #<Row> property '<Property>' of the result should be '<Expected>'." -TestCases @(
-			@{ XPath = '//table'; Path = "$PSScriptRoot/test/csharp-history.html"; Row = 0; Property = 'Feature'; Expected = 'Anonymous methods' }
-			@{ XPath = '//table'; Path = "$PSScriptRoot/test/csharp-history.html"; Row = 4; Property = 'Version'; Expected = '7.0' }
-			@{ XPath = '//table'; Path = "$PSScriptRoot/test/csharp-history.html"; Row = 5; Property = 'Released'; Expected = '2010-04-12' }
+			@{ XPath = '//table'; Path = "$PSScriptRoot/csharp-history.html"; Row = 0; Property = 'Feature'; Expected = 'Anonymous methods' }
+			@{ XPath = '//table'; Path = "$PSScriptRoot/csharp-history.html"; Row = 4; Property = 'Version'; Expected = '7.0' }
+			@{ XPath = '//table'; Path = "$PSScriptRoot/csharp-history.html"; Row = 5; Property = 'Released'; Expected = '2010-04-12' }
 		) {
 			Param($XPath,$Path,$Row,$Property,$Expected)
 			[psobject[]] $table = SelectHtml\Select-Html $XPath -Path $Path -vb

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Transforms.fs" />
+    <Compile Include="SelectHtmlCommand.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
+    <PackageReference Include="PowerShellStandard.Library" Version="5.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildProjectName).psd1" Pack="true" CopyToOutputDirectory="Always" />
+    <None Include="$(MSBuildProjectName).dll-Help.xml" Pack="true" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+  <ItemGroup>
+    <PSModulePath Include="$(PSModulePath)" Exclude="C:\Program Files\**;C:\Windows\**;C:\ProgramData\chocolatey\**" />
+  </ItemGroup>
+</Project>

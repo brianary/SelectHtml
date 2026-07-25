@@ -1,15 +1,15 @@
-# see https://docs.microsoft.com/powershell/scripting/developer/module/how-to-write-a-powershell-module-manifest
+﻿# see https://docs.microsoft.com/powershell/scripting/developer/module/how-to-write-a-powershell-module-manifest
 # and https://docs.microsoft.com/powershell/module/microsoft.powershell.core/new-modulemanifest
 @{
 RootModule = 'SelectHtml.dll'
-ModuleVersion = '1.0.15'
+ModuleVersion = '0.0.0.0'
 CompatiblePSEditions = @('Core','Desktop')
 GUID = '28f9b47e-c048-4923-9361-9a0ea6bab4c7'
 Author = 'Brian Lalonde'
 # CompanyName = 'Unknown'
 Copyright = 'Copyright © 2025 Brian Lalonde. All rights reserved.'
 Description = 'Extracts content from an HTML document using an XPath expression.'
-PowerShellVersion = '5.1'
+PowerShellVersion = '7.3'
 FunctionsToExport = @()
 CmdletsToExport = @('Select-Html')
 VariablesToExport = @()
